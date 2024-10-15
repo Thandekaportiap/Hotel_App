@@ -28,7 +28,8 @@ function App() {
     <>
      <BrowserRouter>
      <Navbar/>
-      <Routes>
+     <div className='h-screen'>
+     <Routes>
         <Route path="/" element={<LandingPage />} />
         
         <Route path="/login/customer" element={<LogInPage role="Customer" />} />
@@ -49,6 +50,7 @@ function App() {
 
 
       </Routes>
+     </div>
       <Footer/>
     </BrowserRouter>
     </>

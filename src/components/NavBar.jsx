@@ -33,7 +33,7 @@ const Navbar = ({ id, onLogout }) => {
 
     return (
         <>
-            <nav className='border bg-[#003060] flex justify-between items-center h-20 mx-auto px-5 text-[#68bbe3] t'>
+            <nav className='border bg-[#003060] flex justify-between items-center h-20 mx-auto px-5 text-[#A3E3FA] t'>
                 <img src={Logo} alt="Logo" className='h-12 w-16' />
 
                 <ul className='hidden md:flex space-x-6 text-2xl font-semibold'>
@@ -94,8 +94,8 @@ const Navbar = ({ id, onLogout }) => {
                     {!openNav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
                 </div>
 
-                <div className={!openNav ? 'left-0 fixed top-0 w-[60%] bg-black h-full block pl-4 pt-4 ease-in-out duration-500 md:hidden' : "fixed left-[100%] ease-in-out duration-500"}>
-                    <h1 className='text-[27px] font-bold'>Accommodations</h1>
+                <div className={!openNav ? 'left-0 fixed top-0 w-[60%] bg-[#003060] h-full block pl-4 pt-4 ease-in-out duration-500 md:hidden' : "fixed left-[100%] ease-in-out duration-500"}>
+                    <h1 className='text-[27px] font-bold'>AwBookings.io</h1>
                     <ul className='block pt-8 space-y-4'>
                         <li className='border-b border-[#68bbe3]'>
                             <NavLink to="/" className={({ isActive }) => (isActive ? 'text-[#68bbe3]' : '')}>Home</NavLink>
@@ -115,10 +115,10 @@ const Navbar = ({ id, onLogout }) => {
                     ) : (
                         <div className='block pt-5 space-y-4'>
                             <Link to='/login'>
-                                <button className='border border-[#68bbe3] hover:bg-[#68bbe3] hover:text-white bg-violet-200 w-full py-2 text-[black] font-bold rounded-md block'>Login</button>
+                                <button className='border border-[#68bbe3] hover:bg-[#68bbe3] hover:text-white bg-[#003060] w-full py-2 text-[white] font-bold rounded-md block'>Login</button>
                             </Link>
                             <Link to="/register">
-                                <button className='border border-[#68bbe3] hover:bg-[#68bbe3] hover:text-white bg-violet-200 w-full py-2 text-[black] font-bold rounded-md'>Register</button>
+                                <button className='border border-[#68bbe3] hover:bg-[#68bbe3] hover:text-white bg-[#003060] w-full py-2 text-[white] font-bold rounded-md'>Register</button>
                             </Link>
                         </div>
                     )}
