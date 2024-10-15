@@ -1,16 +1,59 @@
-// src/features/registerSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { setDoc, doc } from 'firebase/firestore';
+import { auth, db } from '../../components/Firebase'
 
-const registerSlice = createSlice({
-  name: 'register',
+export const registerUser = createAsyncThunk(
+    'user/registerUser',
+    async ({ username, email, password }, { rejectWithValue }) => {
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+  
+        console.log("User created:", user.uid); 
+  
+        await setDoc(doc(db, 'users', user.uid), {
+        username,
+        email,
+        firstName,
+        lastName,
+        mobile,
+        profilePicture,
+        });
+  
+        console.log("User data saved to Firestore"); 
+  
+        return { uid: user.uid, email: user.email, username };
+      } catch (error) {
+        console.error("Firestore error:", error); 
+        return rejectWithValue(error.message);
+      }
+    }
+  );
+
+const userSlice = createSlice({
+  name: 'user',
   initialState: {
     user: null,
-    isregisterenticated: false,
+    loading: false,
+    error: null,
   },
-  reducers: {
-   
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(registerUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(registerUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+      })
+      .addCase(registerUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
 
-export const { setUser, logout } = registerSlice.actions;
-export default registerSlice.reducer;
+export default userSlice.reducer;
