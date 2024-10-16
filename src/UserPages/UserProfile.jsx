@@ -1,7 +1,7 @@
 
 import 'tailwindcss/tailwind.css';
 import React, { useEffect, useState } from 'react';
-import { auth, db } from './Firebase';
+import { auth, db } from '../components/Firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 

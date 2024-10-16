@@ -5,16 +5,16 @@ const loginSlice = createSlice({
   name: 'login',
   initialState: {
     user: null,
-    isloginenticated: false,
+    isAuthenticated: false, // Corrected the typo here
   },
   reducers: {
     setUser(state, action) {
       state.user = action.payload;
-      state.isloginenticated = !!action.payload;
+      state.isAuthenticated = !!action.payload; // Updated to match the corrected property name
     },
     logout(state) {
       state.user = null;
-      state.isloginenticated = false;
+      state.isAuthenticated = false; // Updated to match the corrected property name
     },
   },
 });
