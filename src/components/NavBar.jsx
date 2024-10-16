@@ -33,7 +33,7 @@ const Navbar = ({ id, onLogout }) => {
 
     return (
         <>
-            <nav className='z-50 border bg-[#003060] flex justify-between items-center h-20 mx-auto px-5 text-[#A3E3FA]'>
+            <nav className='z-50 border bg-[#003060] font-serif flex justify-between items-center h-20 mx-auto px-5 text-[#A3E3FA]'>
                 <img src={Logo} alt="Logo" className='h-12 w-16' />
 
                 <ul className='hidden md:flex space-x-6 text-2xl font-semibold'>

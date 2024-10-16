@@ -13,18 +13,18 @@ const LandingPage = () => {
     ];
   return (
     <>
-   <section className='bg-[#0e86d4]'>
+   <section className='bg-[#0e86d4] py-2'>
    <Slide images={images}/>
-   <div id="search-bar" class="w-3/4 mx-auto bg-white rounded-md shadow-lg p-4 z-10">
-    <form class="flex items-center justify-center space-x-2">
+   <div id="search-bar" className="w-3/4 mx-auto bg-white rounded-md shadow-lg p-4 z-10">
+    <form className="flex items-center justify-center space-x-2">
         <input type="text" placeholder="Search here"
-            class="w-full rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent" />
-        <span class="text-gray-700">From</span>
-        <input type="date" class="border rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-gray-600" />
-        <span class="text-gray-700">to</span>
-        <input type="date" class="border rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-gray-600" />
+            className="w-full rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent" />
+        <span className="text-gray-700">From</span>
+        <input type="date" className="border rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-gray-600" />
+        <span className="text-gray-700">to</span>
+        <input type="date" className="border rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-gray-600" />
         <button type="submit"
-            class="bg-[#003060] text-white rounded-md px-4 py-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+            className="bg-[#003060] text-white rounded-md px-4 py-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
             Search
         </button>
     </form>

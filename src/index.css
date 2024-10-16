@@ -5,3 +5,16 @@
     font-family: "Edu AU VIC WA NT Guides", cursive;
     font-optical-sizing: auto;
   }
+
+  .swiper-wrapper {
+    width: 100%;
+    height: max-content !important;
+    padding-bottom: 64px !important;
+    transition-timing-function: linear !important;
+    position: relative;
+  }
+  
+  .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+    background: #003060 !important;
+  }
+  

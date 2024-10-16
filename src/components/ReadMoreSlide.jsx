@@ -1,7 +1,8 @@
 import React from 'react';
+import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css'; // Import Swiper styles
-import SwiperCore, { Autoplay, Pagination } from 'swiper';
+import SwiperCore from 'swiper';
 
 // Install modules
 SwiperCore.use([Autoplay, Pagination]);
