@@ -28,7 +28,7 @@ function App() {
     <>
      <BrowserRouter>
      <Navbar/>
-     <div className='h-screen'>
+     
      <Routes>
         <Route path="/" element={<LandingPage />} />
         
@@ -50,7 +50,7 @@ function App() {
 
 
       </Routes>
-     </div>
+    
       <Footer/>
     </BrowserRouter>
     </>
