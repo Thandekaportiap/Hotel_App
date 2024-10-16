@@ -1,10 +1,54 @@
-import React, { useState } from 'react';
+
 import 'tailwindcss/tailwind.css';
+import React, { useEffect, useState } from 'react';
+import { auth, db } from './Firebase';
+import { doc, getDoc } from 'firebase/firestore';
+import { toast } from 'react-toastify';
+
 
 const UserProfile = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
+  const [userDetails, setUserDetails] = useState(null);
+
   const ProfilePic = require('../assets/Profilepic.jpeg');
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const user = auth.currentUser; // Get the current user
+
+      if (user) {
+        try {
+          const userData = await getDoc(doc(db, 'users', user.uid));
+          if (userData.exists()) {
+            setUserDetails(userData.data());
+          } else {
+            toast.error('No user data found!');
+            setUserDetails(null);
+          }
+        } catch (error) {
+          toast.error('Error fetching user data: ' + error.message);
+          console.error('Error fetching user data:', error);
+        }
+      } else {
+        setUserDetails(null);
+      }
+    };
+
+    // Fetch user data when the component mounts
+    fetchUserData();
+    
+    // Listen for auth state changes
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (!user) {
+        setUserDetails(null);
+      } else {
+        fetchUserData(); // Fetch user data when user state changes
+      }
+    });
+
+    // Clean up subscription on unmount
+    return () => unsubscribe();
+  }, []); // Empty dependency array means this runs once when the component mounts
 
   return (
     <div
