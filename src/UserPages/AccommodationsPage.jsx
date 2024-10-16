@@ -5,17 +5,16 @@ import RoomsCard from '../components/RoomsCard';
 function AccommodationsPage() {
 
     const images = [
-        { src: require('../assets/hotel3.jpg'), label: 'Woodside', id:1 , beds: 1, feat: "Tv, air conditioner, WiFi, etc.", occuppancy: 2 },
-        { src: require('../assets/hotel1.jpg'), label: 'Viewpoint', id:2 , beds: 1, feat: "Tv, air conditioner, WiFi, etc.",  occuppancy: 2 },
-        { src: require('../assets/hotel5.jpg'), label: 'Sweden', id:3 , beds: 1, feat: "Tv, air conditioner, WiFi, etc.",  occuppancy: 2 },
+        { src: require('../assets/hotel3.jpg'), label: 'Woodside', id:1 , beds: 1, feat: "Tv, air conditioner, WiFi, etc.", occupancy: 2 },
+        { src: require('../assets/hotel1.jpg'), label: 'Viewpoint', id:2 , beds: 1, feat: "Tv, air conditioner, WiFi, etc.",  occupancy: 2 },
+        { src: require('../assets/hotel5.jpg'), label: 'Sweden', id:3 , beds: 1, feat: "Tv, air conditioner, WiFi, etc.",  occupancy: 2 },
     ];
   return (
   <>
   <section className='bg-[#0e86d4]'>
-    <div>
         <Slide images={images}/>
-        <h1>Rooms,Suites and Self-Catering Chalets</h1>
-    </div>
+
+    
     <div class="flex rounded-md border-2 border-blue-500 overflow-hidden max-w-md mx-auto font-[sans-serif]">
         <input type="email" placeholder="Search Something..."
           class="w-full outline-none bg-white text-gray-600 text-sm px-4 py-3" />
@@ -27,6 +26,7 @@ function AccommodationsPage() {
           </svg>
         </button>
       </div>
+      <h1 className='room text-4xl font-bold  p-3'>Rooms,Suites and Self-Catering Chalets</h1>
       <div className='w-full '>
         {images.map((image, index) => (
           <RoomsCard key={index} list={image} />

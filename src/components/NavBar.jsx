@@ -33,7 +33,7 @@ const Navbar = ({ id, onLogout }) => {
 
     return (
         <>
-            <nav className='border bg-[#003060] flex justify-between items-center h-20 mx-auto px-5 text-[#A3E3FA] t'>
+            <nav className='z-50 border bg-[#003060] flex justify-between items-center h-20 mx-auto px-5 text-[#A3E3FA]'>
                 <img src={Logo} alt="Logo" className='h-12 w-16' />
 
                 <ul className='hidden md:flex space-x-6 text-2xl font-semibold'>
@@ -94,20 +94,20 @@ const Navbar = ({ id, onLogout }) => {
                     {!openNav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
                 </div>
 
-                <div className={!openNav ? 'left-0 fixed top-0 w-[60%] bg-[#003060] h-full block pl-4 pt-4 ease-in-out duration-500 md:hidden' : "fixed left-[100%] ease-in-out duration-500"}>
-                    <h1 className='text-[27px] font-bold'>AwBookings.io</h1>
+                <div className={!openNav ? 'fixed left-0 top-0 w-[60%] bg-[#003060] h-full block pl-4 pt-4 z-50 ease-in-out duration-500 md:hidden' : "fixed left-[100%] ease-in-out duration-500"}>
+                    <h1 className='text-[27px] font-bold text-white'>AwBookings.io</h1>
                     <ul className='block pt-8 space-y-4'>
                         <li className='border-b border-[#68bbe3]'>
-                            <NavLink to="/" className={({ isActive }) => (isActive ? 'text-[#68bbe3]' : '')}>Home</NavLink>
+                            <NavLink to="/" className={({ isActive }) => (isActive ? 'text-[#68bbe3]' : 'text-white')}>Home</NavLink>
                         </li>
                         <li className='border-b border-[#68bbe3]'>
-                            <NavLink to="/accommodations" className={({ isActive }) => (isActive ? 'text-[#68bbe3]' : '')}>Accommodations</NavLink>
+                            <NavLink to="/accommodations" className={({ isActive }) => (isActive ? 'text-[#68bbe3]' : 'text-white')}>Accommodations</NavLink>
                         </li>
                         <li className='border-b border-[#68bbe3]'>
-                            <NavLink to="/about" className={({ isActive }) => (isActive ? 'text-[#68bbe3]' : '')}>About Us</NavLink>
+                            <NavLink to="/about" className={({ isActive }) => (isActive ? 'text-[#68bbe3]' : 'text-white')}>About Us</NavLink>
                         </li>
                         <li className='border-b border-[#68bbe3]'>
-                            <NavLink to="/contactus" className={({ isActive }) => (isActive ? 'text-[#68bbe3]' : '')}>Contact Us</NavLink>
+                            <NavLink to="/contactus" className={({ isActive }) => (isActive ? 'text-[#68bbe3]' : 'text-white')}>Contact Us</NavLink>
                         </li>
                     </ul>
                     {id ? (
