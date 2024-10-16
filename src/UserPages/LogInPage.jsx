@@ -104,7 +104,7 @@ const LogInPage = () => {
                             Log in
                         </button>
                     </div>
-                    <p className="text-sm mt-8 text-center text-[#055c9d]">Don't have an account? <Link to="/register" className="text-[#003060] font-semibold tracking-wide hover:underline ml-1">Register here</Link></p>
+                    <p className="text-sm mt-8 text-center text-[#055c9d]">Don't have an account? <Link to="/register/customer" className="text-[#003060] font-semibold tracking-wide hover:underline ml-1">Register here</Link></p>
                 </form>
 
                 <div className="h-full md:py-6 flex items-center relative max-md:before:hidden before:absolute before:bg-gradient-to-r before:from-gray-50 before:via-[#68BBE3] before:to-[#0E86D4] before:h-full before:w-3/4 before:right-0 before:z-0">

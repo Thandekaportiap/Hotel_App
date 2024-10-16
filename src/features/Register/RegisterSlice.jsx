@@ -5,31 +5,30 @@ import { auth, db } from '../../components/Firebase'
 
 export const registerUser = createAsyncThunk(
     'user/registerUser',
-    async ({ username, email, password }, { rejectWithValue }) => {
+    async ({ username, email, password, firstName, lastName, mobile, profilePicture }, { rejectWithValue }) => {
       try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
   
-        console.log("User created:", user.uid); 
-  
-        await setDoc(doc(db, 'users', user.uid), {
-        username,
-        email,
-        firstName,
-        lastName,
-        mobile,
-        profilePicture,
-        });
-  
-        console.log("User data saved to Firestore"); 
+        console.log("User created:", user.uid);
+        const userData = {
+            username,
+            email,
+            firstName,
+            lastName,
+            mobile,
+            profilePicture: profilePicture ? profilePicture.name : null 
+        };
+
+        await setDoc(doc(db, 'users', user.uid), userData);
   
         return { uid: user.uid, email: user.email, username };
       } catch (error) {
-        console.error("Firestore error:", error); 
+        console.error("Firestore error:", error);
         return rejectWithValue(error.message);
       }
     }
-  );
+  )
 
 const userSlice = createSlice({
   name: 'user',

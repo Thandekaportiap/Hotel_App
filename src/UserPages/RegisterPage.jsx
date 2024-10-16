@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../features/Register/RegisterSlice';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+
 
 const RegisterPage = () => {
     const [username, setUsername] = useState('');
@@ -15,6 +17,7 @@ const RegisterPage = () => {
     // const { loading, error } = useSelector((state) => state.user);
     const [loading, setLoading ] = useState('')
     const [error, setError ] = useState('')
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -33,6 +36,7 @@ const RegisterPage = () => {
             if (registerUser.fulfilled.match(resultAction)) {
                 toast.success('User created successfully', { position: "top-center" });
                 alert("success")
+                navigate("/login/customer");
             } else {
                 toast.error('User creation failed: ' + resultAction.payload, { position: "top-center" });
             }
