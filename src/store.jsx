@@ -9,7 +9,7 @@ export const store = configureStore({
     register: registerReducer,
     accommodations: accommodationReducer,
     accommodations: accommodationListReducer,
-    accommodations: accommodationListAdminReducer,
+    accommodationListAdmin: accommodationListAdminReducer, // Admin list
   },
 })
 

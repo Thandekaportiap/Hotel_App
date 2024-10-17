@@ -2,16 +2,17 @@ import React, { useEffect } from 'react';
 import ManageCard from '../components/ManageCard';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAccommodationList } from '../features/Accommodation/AccommodationListSlice';
+import { fetchAccommodationList } from '../features/Accommodation/AccommodationListAdminSlice';
 
 const ManageAccommodations = ({ userId }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { accommodationList, loading, error } = useSelector((state) => state.accommodations);
+    
+    const { accommodationList, loading, error } = useSelector((state) => state.accommodationListAdmin);
 
     useEffect(() => {
         if (userId) {
-            dispatch(fetchAccommodationList(userId)); // Pass userId here
+            dispatch(fetchAccommodationList(userId)); 
         }
     }, [dispatch, userId]);
 
@@ -26,8 +27,6 @@ const ManageAccommodations = ({ userId }) => {
     const addNewAccommodation = () => {
         navigate('/addaccommodation');
     };
-
-    console.log(accommodationList); // Check the fetched data
 
     return (
         <section>
