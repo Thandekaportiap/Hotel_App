@@ -10,7 +10,7 @@ SwiperCore.use([Autoplay, Pagination]);
 const images = [
    
     { src: require('../assets/hotel3.jpg'), label: 'Woodside' },
-    { src: require('../assets/hotel1.jpg'), label: 'Viewpoint' },
+    { src: require('../assets/360_F_271082810_CtbTjpnOU3vx43ngAKqpCPUBx25udBrg.jpg'), label: 'Viewpoint' },
     { src: require('../assets/hotel5.jpg'), label: 'Sweden' },
 ];
 

@@ -61,7 +61,7 @@ function App() {
         <Route path='/about' element={<AboutUs/> }/>
         <Route path='/adminProfile' element={<AdminProfile userId={id}/>}/>
         <Route path='/bookings' element={<Bookings/>}/>
-        <Route path='/manageaccommodations' element={<ManageAccommodations />} />
+        <Route path='/manageaccommodations' element={<ManageAccommodations userId={id} />} />
         <Route path='/accommodations' element={<AccommodationsPage/>}/>
         {/* <Route path='/readmore' element={<ReadMore/>}/> */}
         <Route path='/likes' element={<LikesPage/>} />

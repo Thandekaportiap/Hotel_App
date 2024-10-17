@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { db } from '../../components/Firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 
+// Thunk to fetch accommodation list by userId
 export const fetchAccommodationList = createAsyncThunk(
     'accommodations/fetchAccommodationList',
     async (userId) => {
@@ -16,7 +17,8 @@ export const fetchAccommodationList = createAsyncThunk(
     }
 );
 
-const accommodationListSlice = createSlice({
+// Slice for accommodation list
+const accommodationListAdminSlice = createSlice({
     name: 'accommodations',
     initialState: {
         accommodationList: [],
@@ -41,4 +43,4 @@ const accommodationListSlice = createSlice({
     },
 });
 
-export default accommodationListSlice.reducer;
+export default accommodationListAdminSlice.reducer;

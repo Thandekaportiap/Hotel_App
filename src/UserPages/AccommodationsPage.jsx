@@ -1,14 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Slide from '../components/Slide'
 import RoomsCard from '../components/RoomsCard';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAccommodationList } from '../features/Accommodation/AccommodationListSlice';
 
 function AccommodationsPage() {
 
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { accommodationList, loading, error } = useSelector((state) => state.accommodations);
+
+    useEffect(() => {
+        dispatch(fetchAccommodationList());
+    }, [dispatch]);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+
     const images = [
-        { src: require('../assets/hotel3.jpg'), label: 'Woodside', id:1 , beds: 1, feat: "Tv, air conditioner, WiFi, etc.", occupancy: 2 },
-        { src: require('../assets/hotel1.jpg'), label: 'Viewpoint', id:2 , beds: 1, feat: "Tv, air conditioner, WiFi, etc.",  occupancy: 2 },
-        { src: require('../assets/hotel5.jpg'), label: 'Sweden', id:3 , beds: 1, feat: "Tv, air conditioner, WiFi, etc.",  occupancy: 2 },
+        { src: require('../assets/hotel3.jpg'), label: 'Woodside', id:1 },
+        { src: require('../assets/hotel2.avif'), label: 'Viewpoint', id:2  },
+        { src: require('../assets/hotel5.jpg'), label: 'Sweden', id:3  },
     ];
+
+    console.log(accommodationList);
+
+   
   return (
   <>
   <section className='bg-[#0e86d4]'>
@@ -28,8 +51,8 @@ function AccommodationsPage() {
       </div>
       <h1 className='room text-4xl font-bold  p-3'>Rooms,Suites and Self-Catering Chalets</h1>
       <div className='w-full '>
-        {images.map((image, index) => (
-          <RoomsCard key={index} list={image} />
+        {accommodationList.map((list, index) => (
+          <RoomsCard key={index} list={list} />
         ))}
       </div>
   </section>

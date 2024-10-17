@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerAdmin } from '../features/Register/RegisterAdminSlice';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+
 
 const RegisterAdmin = () => {
     const [username, setUsername] = useState('');
@@ -13,6 +15,8 @@ const RegisterAdmin = () => {
     const [profilePicture, setProfilePicture] = useState(null);
     const [company, setCompany] = useState('');
     const dispatch = useDispatch();
+    const navigate = useNavigate
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,6 +34,7 @@ const RegisterAdmin = () => {
             }));
 
             if (registerAdmin.fulfilled.match(resultAction)) {
+                navigate('/adminProfile');
                 toast.success('Admin created successfully', { position: "top-center" });
             } else {
                 toast.error('Admin creation failed: ' + resultAction.payload, { position: "top-center" });

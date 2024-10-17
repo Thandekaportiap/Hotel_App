@@ -7,19 +7,19 @@ const RoomsCard = ({ list }) => {
         className="bg-white grid sm:grid-cols-2 items-center shadow-lg rounded-lg font-sans overflow-hidden mx-auto transition-transform duration-300 hover:scale-105 p-6"
       >
         <div className="h-40 sm:h-48 mb-4 sm:mb-0">
-          <img src={list.src} alt="Room" className="object-cover w-full h-full transition-transform duration-300 hover:scale-110" />
+          <img src={list.imageUrl} alt="Room" className="object-cover w-full h-full transition-transform duration-300 hover:scale-110" />
         </div>
 
         <div className="p-6">
           <div className="flex flex-col justify-between h-full">
             <div>
               <div className="flex flex-row justify-between items-center mb-4">
-                <h3 className="font-serif text-4xl font-semibold text-gray-800">{list.label}</h3>
-                <span className="mt-2 text-2xl text-gray-600 leading-relaxed text-right">{list.feat}</span>
+                <h3 className="font-serif text-4xl font-semibold text-gray-800">{list.name}</h3>
+                <span className="mt-2 text-2xl text-gray-600 leading-relaxed text-right">{list.amenities}</span>
               </div>
               <div className="flex flex-row justify-between items-center mb-4">
-                <span className="block text-2xl text-gray-500">Beds: {list.beds}</span>
-                <span className="block text-2xl text-gray-500">Occupancy: {list.occupancy}</span>
+                <span className="block text-2xl text-gray-500">Beds: {list.numberOfBeds}</span>
+                <span className="block text-2xl text-gray-500">Occupancy: {list.capacity}</span>
               </div>
             </div>
             <div className="flex flex-row justify-between items-center mt-4">

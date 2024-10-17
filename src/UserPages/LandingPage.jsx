@@ -8,7 +8,7 @@ const LandingPage = () => {
         // { src: require('../assets/hotel2.avif'), label: 'CUBE' },
         // { src: require('../assets/Hotel1.jpg'), label: 'Fredriksberg' },
         { src: require('../assets/hotel3.jpg'), label: 'Woodside' },
-        { src: require('../assets/hotel1.jpg'), label: 'Viewpoint' },
+        { src: require('../assets/360_F_271082810_CtbTjpnOU3vx43ngAKqpCPUBx25udBrg.jpg'), label: 'Viewpoint' },
         { src: require('../assets/hotel5.jpg'), label: 'Sweden' },
     ];
   return (

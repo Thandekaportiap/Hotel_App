@@ -4,14 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAccommodationList } from '../features/Accommodation/AccommodationListSlice';
 
-const ManageAccommodations = () => {
+const ManageAccommodations = ({ userId }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { accommodationList, loading, error } = useSelector((state) => state.accommodations);
 
     useEffect(() => {
-        dispatch(fetchAccommodationList());
-    }, [dispatch]);
+        if (userId) {
+            dispatch(fetchAccommodationList(userId)); // Pass userId here
+        }
+    }, [dispatch, userId]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -25,7 +27,7 @@ const ManageAccommodations = () => {
         navigate('/addaccommodation');
     };
 
-    console.log(accommodationList);
+    console.log(accommodationList); // Check the fetched data
 
     return (
         <section>
