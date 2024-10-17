@@ -8,7 +8,7 @@ import { setUser } from '../features/Login/LoginSlice';
 
 const LogImg = require('../assets/bedroom.jpg');
 
-const LogInAdmin = () => {
+const LogInAdmin = ({handleLogin}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
@@ -22,8 +22,8 @@ const LogInAdmin = () => {
             const user = userCredential.user;
 
             dispatch(setUser({ email: user.email, uid: user.uid }));
-
-            console.log("User logged in");
+            handleLogin(user.uid);
+            // console.log("User logged in");
             toast.success('User logged in successfully', {
                 position: "top-center",
             });

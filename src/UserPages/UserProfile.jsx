@@ -4,52 +4,45 @@ import { auth, db } from '../components/Firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 
-const UserProfile = () => {
+const UserProfile = ({ userId }) => {
+  console.log(userId)
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [userDetails, setUserDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const user = auth.currentUser; 
-      console.log('Current user:', user);
-  
+      setLoading(true);
+      const user = auth.currentUser;
+
       if (user) {
-        console.log('Fetching data for UID:', user.uid);
         try {
           const userData = await getDoc(doc(db, 'users', user.uid));
           if (userData.exists()) {
             setUserDetails(userData.data());
           } else {
             toast.error('No user data found!');
-            setUserDetails(null);
           }
         } catch (error) {
-          console.error('Error fetching user data:', error);
           toast.error('Error fetching user data: ' + error.message);
         }
       } else {
-        console.log('No user is currently logged in.');
         setUserDetails(null);
       }
+      setLoading(false);
     };
-  
+
     fetchUserData();
-  
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (!user) {
-        console.log('User logged out.');
-        setUserDetails(null);
-      } else {
-        console.log('User logged in:', user.uid);
-        fetchUserData(); 
-
-      }
+      if (!user) setUserDetails(null);
     });
-  
-    return () => unsubscribe();
-  }, []);
 
-  console.log(userDetails)
+    return () => unsubscribe();
+  }, [userId]);
+
+  if (loading) return <div>Loading...</div>;
+
+ 
   
   return (
     <div

@@ -1,23 +1,43 @@
-// src/features/accommodationSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { db } from '../../components/Firebase';
+import { collection, addDoc } from 'firebase/firestore';
+import { toast } from 'react-toastify';
+
+
+export const addAccommodation = createAsyncThunk(
+    'accommodations/addAccommodation',
+    async ({ formData, userId }, { rejectWithValue }) => {
+        try {
+            const accommodationWithUserId = { ...formData, userId };
+            await addDoc(collection(db, 'accommodations'), accommodationWithUserId);
+            toast.success('Accommodation added successfully!');
+        } catch (error) {
+            console.error('Error adding accommodation:', error);
+            toast.error('Error adding accommodation: ' + error.message);
+            return rejectWithValue(error.message);
+        }
+    }
+);
 
 const accommodationSlice = createSlice({
-  name: 'accommodation',
-  initialState: {
-    user: null,
-    isaccommodationenticated: false,
-  },
-  reducers: {
-    setUser(state, action) {
-      state.user = action.payload;
-      state.isaccommodationenticated = !!action.payload;
+    name: 'accommodations',
+    initialState: {
+        status: 'idle', 
     },
-    logout(state) {
-      state.user = null;
-      state.isaccommodationenticated = false;
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(addAccommodation.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(addAccommodation.fulfilled, (state) => {
+                state.status = 'succeeded';
+            })
+            .addCase(addAccommodation.rejected, (state) => {
+                state.status = 'failed';
+            });
     },
-  },
 });
 
-export const { setUser, logout } = accommodationSlice.actions;
 export default accommodationSlice.reducer;

@@ -1,15 +1,21 @@
 import React from 'react'
 import ManageCard from '../components/ManageCard';
+import { useNavigate } from 'react-router-dom';
 
 const backgroundImage = require("../assets/resort.jpg")
 
 const ManageAccommodations = () => {
+    const navigate = useNavigate();
 
     const images = [
         { src: require('../assets/hotel3.jpg'), label: 'Woodside' },
         { src: require('../assets/hotel1.jpg'), label: 'Viewpoint' },
         { src: require('../assets/hotel5.jpg'), label: 'Sweden' },
     ];
+
+    const addNewAccommodation = () => {
+        navigate('/addaccommodation');
+    };
   return (
    <section>
     
@@ -22,7 +28,7 @@ const ManageAccommodations = () => {
             ))}
         </div>
 
-        <button className='bg-[#003060] text-white rounded-md px-4 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 transition duration-200 m-4'>
+        <button className='bg-[#003060] text-white rounded-md px-4 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 transition duration-200 m-4' onClick={addNewAccommodation}>
             Add New Accommodation       </button>
     
    </section>
