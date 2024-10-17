@@ -34,7 +34,7 @@ const ManageAccommodations = ({ userId }) => {
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4'>
                 {accommodationList.length > 0 ? (
                     accommodationList.map((item) => (
-                        <ManageCard key={item.id} list={{ src: item.imageUrl, label: item.name }} />
+                        <ManageCard key={item.id} list={{ src: item.imageUrl, label: item.name, id: item.id }} />
                     ))
                 ) : (
                     <div>No accommodations found.</div>

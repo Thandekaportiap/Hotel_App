@@ -20,6 +20,7 @@ import BookingsHistory from './UserPages/BookingsHistory'
 import ReadMore from './UserPages/ReadMoreAccommodation'
 import UserProfile from './UserPages/UserProfile'
 import AddAccommodationForm from './AdminPages/AddAccommodationForm'
+import EditAccommodation from './AdminPages/EditAccommodation'
 
 
 
@@ -62,6 +63,7 @@ function App() {
         <Route path='/adminProfile' element={<AdminProfile userId={id}/>}/>
         <Route path='/bookings' element={<Bookings/>}/>
         <Route path='/manageaccommodations' element={<ManageAccommodations userId={id} />} />
+        <Route path='/editaccommodation/:id' element={<EditAccommodation userId={id}/>}/>
         <Route path='/accommodations' element={<AccommodationsPage/>}/>
         <Route path='/:id' element={<ReadMore/>}/>
         <Route path='/likes' element={<LikesPage/>} />
