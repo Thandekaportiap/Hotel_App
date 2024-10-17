@@ -1,8 +1,10 @@
 import React from 'react'
 import ProgressSlideCarousel from '../components/ReadMoreSlide'
+import { useParams } from 'react-router-dom';
+
 
 const ReadMoreAccommodation = () => {
-
+  const { id } = useParams(); 
 const room =[
   {
     name :" Mountain Views & Home Comforts",

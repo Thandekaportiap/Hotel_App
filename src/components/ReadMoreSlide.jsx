@@ -15,6 +15,7 @@ const images = [
 ];
 
 const ProgressSlideCarousel = () => {
+    
   return (
     <div className="w-full relative">
       <Swiper

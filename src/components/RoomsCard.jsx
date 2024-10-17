@@ -1,6 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const RoomsCard = ({ list }) => {
+    const navigate = useNavigate();
+
+    const handleViewList = (listId) => {
+        navigate(`/${listId}`); 
+    };
+
   return (
     <div className="w-full mt-4">
       <div
@@ -30,7 +38,8 @@ const RoomsCard = ({ list }) => {
                   data-original="#000000"></path>
               </svg>
 
-              <button className='mt-4 bg-[#003060] text-white rounded-md px-4 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 transition duration-200'>
+              <button className='mt-4 bg-[#003060] text-white rounded-md px-4 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 transition duration-200'
+              onClick={() => handleViewList(list.id)}>
                 Read More
               </button>
             </div>
