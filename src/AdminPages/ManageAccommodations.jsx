@@ -29,21 +29,23 @@ const ManageAccommodations = ({ userId }) => {
     };
 
     return (
-        <section>
+        <section className='bg-[#68bbe3] p-4'>
             <h1 className="text-center text-4xl font-bold p-8">Manage Accommodations</h1>
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4'>
                 {accommodationList.length > 0 ? (
                     accommodationList.map((item) => (
-                        <ManageCard key={item.id} list={{ src: item.imageUrl, label: item.name, id: item.id }} />
+                        <ManageCard key={item.id} list={{ src: item.imageUrl, label: item.name, id: item.id, price: item.price, location: item.location }} />
                     ))
                 ) : (
                     <div>No accommodations found.</div>
                 )}
             </div>
 
-            <button className='bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600' onClick={addNewAccommodation}>
-                Add New Accommodation
-            </button>
+            <div className='flex justify-center mt-4'>
+                <button className='bg-[#003060] text-white rounded-md px-4 py-2 hover:bg-blue-600' onClick={addNewAccommodation}>
+                    Add New Accommodation
+                </button>
+            </div>
         </section>
     );
 };

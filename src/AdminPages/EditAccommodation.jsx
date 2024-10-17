@@ -51,8 +51,8 @@ const EditAccommodation = () => {
     }
 
     return (
-        <div className="max-w-md mx-auto bg-[#86bbe3] p-6 rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold mb-4">Edit Accommodation</h2>
+        <div className="max-w-xl mx-auto bg-[#86bbe3] p-6 rounded-lg shadow-md">
+            <h2 className="font-sans text-3xl text-center font-bold mb-4 p-4">Edit Accommodation</h2>
             <form onSubmit={handleSubmit}>
                 {Object.keys(formData).map((key) => (
                     <div className="mb-4" key={key}>
@@ -63,7 +63,7 @@ const EditAccommodation = () => {
                                 value={formData[key]}
                                 onChange={handleChange}
                                 required
-                                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                                className="mt-1 block w-full border border-[#003060] rounded-md p-2"
                             />
                         ) : (
                             <input
@@ -72,7 +72,7 @@ const EditAccommodation = () => {
                                 value={formData[key]}
                                 onChange={handleChange}
                                 required
-                                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                                className="mt-1 block w-full border border-[#003060] rounded-md p-2"
                             />
                         )}
                     </div>
