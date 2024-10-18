@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { registerUser } from '../features/Register/RegisterSlice';
-import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-
 
 const RegisterPage = () => {
     const [username, setUsername] = useState('');
@@ -14,13 +13,12 @@ const RegisterPage = () => {
     const [mobile, setMobile] = useState('');
     const [profilePicture, setProfilePicture] = useState(null);
     const dispatch = useDispatch();
-    // const { loading, error } = useSelector((state) => state.user);
-    const [loading, setLoading ] = useState('')
-    const [error, setError ] = useState('')
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
 
         try {
             const resultAction = await dispatch(registerUser({
@@ -34,14 +32,30 @@ const RegisterPage = () => {
             }));
 
             if (registerUser.fulfilled.match(resultAction)) {
-                toast.success('User created successfully', { position: "top-center" });
-                alert("success")
+                await Swal.fire({
+                    title: 'Success!',
+                    text: 'User created successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Okay'
+                });
                 navigate("/login/customer");
             } else {
-                toast.error('User creation failed: ' + resultAction.payload, { position: "top-center" });
+                await Swal.fire({
+                    title: 'Error!',
+                    text: 'User creation failed: ' + resultAction.payload,
+                    icon: 'error',
+                    confirmButtonText: 'Okay'
+                });
             }
         } catch (error) {
-            toast.error('Error: ' + error.message, { position: "top-center" });
+            await Swal.fire({
+                title: 'Error!',
+                text: 'Error: ' + error.message,
+                icon: 'error',
+                confirmButtonText: 'Okay'
+            });
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -142,7 +156,6 @@ const RegisterPage = () => {
                             {loading ? 'Signing Up...' : 'Sign Up'}
                         </button>
                     </div>
-                    {error && <p className="text-red-500 mt-2">{error}</p>}
                 </form>
             </div>
         </div>

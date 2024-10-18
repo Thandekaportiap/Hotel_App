@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerAdmin } from '../features/Register/RegisterAdminSlice';
-import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-
 
 const RegisterAdmin = () => {
     const [username, setUsername] = useState('');
@@ -15,8 +14,7 @@ const RegisterAdmin = () => {
     const [profilePicture, setProfilePicture] = useState(null);
     const [company, setCompany] = useState('');
     const dispatch = useDispatch();
-    const navigate = useNavigate
-    
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,17 +28,32 @@ const RegisterAdmin = () => {
                 lastName,
                 mobile,
                 profilePicture,
-                company,  
+                company,
             }));
 
             if (registerAdmin.fulfilled.match(resultAction)) {
-                navigate('/adminProfile');
-                toast.success('Admin created successfully', { position: "top-center" });
+                await Swal.fire({
+                    title: 'Success!',
+                    text: 'Admin created successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Okay'
+                });
+                navigate('/login/admin');
             } else {
-                toast.error('Admin creation failed: ' + resultAction.payload, { position: "top-center" });
+                await Swal.fire({
+                    title: 'Error!',
+                    text: 'Admin creation failed: ' + resultAction.payload,
+                    icon: 'error',
+                    confirmButtonText: 'Okay'
+                });
             }
         } catch (error) {
-            toast.error('Error: ' + error.message, { position: "top-center" });
+            await Swal.fire({
+                title: 'Error!',
+                text: 'Error: ' + error.message,
+                icon: 'error',
+                confirmButtonText: 'Okay'
+            });
         }
     };
 
@@ -68,6 +81,7 @@ const RegisterAdmin = () => {
                                 onChange={(e) => setCompany(e.target.value)}
                                 className="bg-gray-100 focus:bg-transparent w-full text-sm text-gray-800 px-4 py-3 rounded-md outline-blue-500 transition-all" 
                                 placeholder="Enter company name" 
+                                required
                             />
                         </div>
                         <div>
@@ -78,6 +92,7 @@ const RegisterAdmin = () => {
                                 onChange={(e) => setUsername(e.target.value)}
                                 className="bg-gray-100 focus:bg-transparent w-full text-sm text-gray-800 px-4 py-3 rounded-md outline-blue-500 transition-all" 
                                 placeholder="Enter username" 
+                                required
                             />
                         </div>
                         <div>
@@ -88,6 +103,7 @@ const RegisterAdmin = () => {
                                 onChange={(e) => setFirstName(e.target.value)}
                                 className="bg-gray-100 focus:bg-transparent w-full text-sm text-gray-800 px-4 py-3 rounded-md outline-blue-500 transition-all" 
                                 placeholder="Enter first name" 
+                                required
                             />
                         </div>
                         <div>
@@ -98,6 +114,7 @@ const RegisterAdmin = () => {
                                 onChange={(e) => setLastName(e.target.value)}
                                 className="bg-gray-100 focus:bg-transparent w-full text-sm text-gray-800 px-4 py-3 rounded-md outline-blue-500 transition-all" 
                                 placeholder="Enter last name" 
+                                required
                             />
                         </div>
                         <div>
@@ -108,6 +125,7 @@ const RegisterAdmin = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                                 className="bg-gray-100 focus:bg-transparent w-full text-sm text-gray-800 px-4 py-3 rounded-md outline-blue-500 transition-all" 
                                 placeholder="Enter email" 
+                                required
                             />
                         </div>
                         <div>
@@ -118,6 +136,7 @@ const RegisterAdmin = () => {
                                 onChange={(e) => setMobile(e.target.value)}
                                 className="bg-gray-100 focus:bg-transparent w-full text-sm text-gray-800 px-4 py-3 rounded-md outline-blue-500 transition-all" 
                                 placeholder="Enter mobile number" 
+                                required
                             />
                         </div>
                         <div>
@@ -128,6 +147,7 @@ const RegisterAdmin = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                                 className="bg-gray-100 focus:bg-transparent w-full text-sm text-gray-800 px-4 py-3 rounded-md outline-blue-500 transition-all" 
                                 placeholder="Enter password" 
+                                required
                             />
                         </div>
                         <div>

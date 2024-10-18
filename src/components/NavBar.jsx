@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 const Logo = require('../assets/Logo.png');
 
-const Navbar = ({ id, onLogout }) => {
+const Navbar = ({ id, onLogout, role }) => {
     const [openNav, setOpenNav] = useState(true);
     const [loginDropdownOpen, setLoginDropdownOpen] = useState(false);
     const [registerDropdownOpen, setRegisterDropdownOpen] = useState(false);
@@ -54,7 +54,7 @@ const Navbar = ({ id, onLogout }) => {
                 <div className='hidden space-x-4 md:flex'>
                     {id ? (
                         <>
-                            <Link to="/adminProfile">
+                            <Link to={role === "Admin" ? "/adminProfile" : "/userprofile"}>
                                 <button className="flex items-center space-x-2 border border-[#68bbe3] text-[#68bbe3] py-2 hover:bg-[#68bbe3] hover:text-white px-4 font-bold rounded-md">
                                     <AiOutlineUser />
                                     <span>Profile</span>

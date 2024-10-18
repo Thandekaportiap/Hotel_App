@@ -1,14 +1,14 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../components/Firebase';
 import React, { useState } from 'react';
-import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../features/Login/LoginSlice';
+import Swal from 'sweetalert2';
 
 const LogImg = require('../assets/bedroom.jpg');
 
-const LogInPage = ({handleLogin}) => {
+const LogInPage = ({ handleLogin }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
@@ -16,21 +16,34 @@ const LogInPage = ({handleLogin}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const role = "Customer";
 
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
             dispatch(setUser({ email: user.email, uid: user.uid }));
-                handleLogin(user.uid);
-            // console.log("User logged in");
-            navigate("/userprofile");
-            toast.success('User logged in successfully', {
-                position: "top-center",
+            handleLogin(user.uid, role);
+
+            // Use SweetAlert for success notification
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'User logged in successfully',
+                confirmButtonText: 'OK',
             });
+
+            navigate("/userprofile");
+
         } catch (error) {
             console.log(error);
-            toast.error('Login failed: ' + error.message);
+            // Use SweetAlert for error notification
+            Swal.fire({
+                icon: 'error',
+                title: 'Login failed',
+                text: error.message,
+                confirmButtonText: 'Try Again',
+            });
         }
     };
 

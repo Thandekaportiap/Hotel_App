@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFavorites, removeFavorite } from '../features/Favorites/FavoritesSlice'; // Import the removeFavorite action
-import RoomsCard from '../components/RoomsCard';
+import FavoritesCard from '../components/FavoritesCard';
 
 const FavoritesPage = ({ customerId }) => {
     const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const FavoritesPage = ({ customerId }) => {
             <div className='w-full'>
                 {favorites.map((favorite) => (
                     <div key={favorite.id} className="flex justify-between items-center">
-                        <RoomsCard list={favorite.roomDetails} />
+                        <FavoritesCard list={favorite.roomDetails} />
                         <button
                             onClick={() => handleRemoveFavorite(favorite.id)}
                             className="bg-red-500 text-white px-4 py-2 rounded"

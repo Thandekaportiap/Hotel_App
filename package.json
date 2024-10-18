@@ -20,6 +20,7 @@
     "react-router-dom": "^6.27.0",
     "react-toastify": "^10.0.6",
     "router-dom": "^3.0.1",
+    "sweetalert2": "^11.14.3",
     "swiper": "^11.1.14",
     "vite-plugin-require": "^1.2.14"
   },
