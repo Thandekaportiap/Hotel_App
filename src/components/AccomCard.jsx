@@ -5,7 +5,7 @@ const AccomCard = ({ list }) => {
    <>
     <div className="bg-white shadow-[0_4px_12px_-5px_rgba(0,0,0,0.4)] w-full py-6 max-w-sm rounded-lg font-[sans-serif] overflow-hidden mx-auto mt-4">
       <div className="flex items-center gap-2 px-6">
-        <h3 className="text-2xl text-[#003060] font-bold flex-1 p-2">{list.name}</h3>
+        <h3 className="text-2xl text-[#003060] font-bold flex-1 p-2">{list.label}</h3>
         <svg xmlns="http://www.w3.org/2000/svg" width="26px" className="cursor-pointer fill-red-500 shrink-0"
           viewBox="0 0 64 64">
           <path
@@ -15,14 +15,14 @@ const AccomCard = ({ list }) => {
       </div>
 
       <div className="min-h-[300px]">
-        <img src={list.imageUrl} alt="Slide 1" className="object-cover w-full h-full" />
+        <img src={list.src} alt="Slide 1" className="object-cover w-full h-full" />
       </div>
 
       <div className="px-6">
-        <p className="text-xl text-gray-600 leading-relaxed">{list.description}</p>
+        <p className="text-xl text-gray-600 leading-relaxed">Enjoy natural light streaming through the large windows, and unwind in a cozy seating area with a good book or a cup of coffee.</p>
 
         <div className="mt-8 flex items-center flex-wrap gap-4">
-          <h3 className="text-xl text-gray-800 font-bold flex-1">From {list.price} per night</h3>
+          <h3 className="text-xl text-gray-800 font-bold flex-1">From R450 per night</h3>
           <button type="button"
             className="px-5 py-2.5 rounded-lg text-white text-sm tracking-wider bg-[#003060] hover:bg-blue-700 outline-none">View</button>
         </div>

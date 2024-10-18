@@ -3,9 +3,12 @@ import { useDispatch } from 'react-redux';
 import { addAccommodation } from '../features/Accommodation/AccommodationSlice';
 import { storage } from '../components/Firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { useNavigate } from 'react-router-dom';
 
 const AddAccommodationForm = ({ userId }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate()
+
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -48,7 +51,6 @@ const AddAccommodationForm = ({ userId }) => {
 
         dispatch(addAccommodation({ formData: accommodationData, userId }));
         
-        // Reset form
         setFormData({
             name: '',
             description: '',
@@ -62,10 +64,11 @@ const AddAccommodationForm = ({ userId }) => {
         });
         setImageFile(null);
         setImagePreview('');
+        navigate('/manageaccommodations')
     };
 
     return (
-        <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+        <div className="max-w-md mx-auto bg-[#68BBE3] p-6 rounded-lg shadow-md">
             <h2 className="text-2xl font-bold mb-4">Add Accommodation</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
@@ -76,7 +79,7 @@ const AddAccommodationForm = ({ userId }) => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                        className="mt-1 block w-full border border-[#003060] rounded-md p-2"
                     />
                 </div>
                 <div className="mb-4">
@@ -86,7 +89,7 @@ const AddAccommodationForm = ({ userId }) => {
                         value={formData.description}
                         onChange={handleChange}
                         required
-                        className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                        className="mt-1 block w-full border border-[#003060] rounded-md p-2"
                     />
                 </div>
                 <div className="mb-4">
@@ -97,7 +100,7 @@ const AddAccommodationForm = ({ userId }) => {
                         value={formData.location}
                         onChange={handleChange}
                         required
-                        className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                        className="mt-1 block w-full border border-[#003060] rounded-md p-2"
                     />
                 </div>
                 <div className="mb-4">
@@ -108,7 +111,7 @@ const AddAccommodationForm = ({ userId }) => {
                         value={formData.price}
                         onChange={handleChange}
                         required
-                        className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                        className="mt-1 block w-full border border-[#003060] rounded-md p-2"
                     />
                 </div>
                 <div className="mb-4">
@@ -119,7 +122,7 @@ const AddAccommodationForm = ({ userId }) => {
                         value={formData.capacity}
                         onChange={handleChange}
                         required
-                        className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                        className="mt-1 block w-full border border-[#003060] rounded-md p-2"
                     />
                 </div>
                 <div className="mb-4">
@@ -130,7 +133,7 @@ const AddAccommodationForm = ({ userId }) => {
                         value={formData.numberOfBeds}
                         onChange={handleChange}
                         required
-                        className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                        className="mt-1 block w-full border border-[#003060] rounded-md p-2"
                     />
                 </div>
                 <div className="mb-4">
@@ -140,7 +143,7 @@ const AddAccommodationForm = ({ userId }) => {
                         value={formData.amenities}
                         onChange={handleChange}
                         placeholder="e.g., Wi-Fi, Parking, Pool"
-                        className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                        className="mt-1 block w-full border border-[#003060] rounded-md p-2"
                     />
                 </div>
                 <div className="mb-4">
@@ -150,7 +153,7 @@ const AddAccommodationForm = ({ userId }) => {
                         name="checkInTime"
                         value={formData.checkInTime}
                         onChange={handleChange}
-                        className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                        className="mt-1 block w-full border border-[#003060] rounded-md p-2"
                     />
                 </div>
                 <div className="mb-4">
@@ -160,7 +163,7 @@ const AddAccommodationForm = ({ userId }) => {
                         name="checkOutTime"
                         value={formData.checkOutTime}
                         onChange={handleChange}
-                        className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                        className="mt-1 block w-full border border-[#003060] rounded-md p-2"
                     />
                 </div>
                 <div className="mb-4">
@@ -169,7 +172,7 @@ const AddAccommodationForm = ({ userId }) => {
                         type="file"
                         accept="image/*"
                         onChange={handleImageChange}
-                        className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                        className="mt-1 block w-full border border-[#003060] rounded-md p-2"
                     />
                     {imagePreview && (
                         <img
