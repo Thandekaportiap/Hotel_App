@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAccommodationList } from '../features/Accommodation/AccommodationListSlice';
 
-function AccommodationsPage() {
+function AccommodationsPage({customerId}) {
+    console.log(customerId)
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -52,7 +53,7 @@ function AccommodationsPage() {
       <h1 className='room text-4xl font-bold  p-3'>Rooms,Suites and Self-Catering Chalets</h1>
       <div className='w-full '>
         {accommodationList.map((list, index) => (
-          <RoomsCard key={index} list={list} />
+          <RoomsCard key={index} list={list} customerId={customerId} />
         ))}
       </div>
   </section>

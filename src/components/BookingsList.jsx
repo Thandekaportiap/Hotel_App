@@ -1,7 +1,7 @@
-// components/BookingsList.js
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBookings, updateBooking, deleteBooking, selectBookings, selectLoading, selectError } from '../features/Booking/BookingAdminSlice';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 
 const BookingsList = ({ userId }) => {
   const dispatch = useDispatch();
@@ -36,35 +36,47 @@ const BookingsList = ({ userId }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <div className="text-center">Loading...</div>;
+  if (error) return <div className="text-red-500">Error: {error}</div>;
 
   return (
-    <div>
-      <h1>Your Bookings</h1>
+    <div className='bg-white rounded-lg shadow-lg shadow-[#003060] p-6 text-[#003060]'>
+        <h1 className='text-2xl font-sans font-semibold capitalize'>your upcoming bookings</h1>
       <ul>
         {bookings.map(booking => (
-          <li key={booking.id}>
-            <div>
-              <h2>{booking.roomName}</h2>
-              <p>Check-in: {booking.checkInDate}</p>
-              <p>Check-out: {booking.checkOutDate}</p>
-              <button onClick={() => handleEdit(booking)}>Edit</button>
-              <button onClick={() => handleDelete(booking.id)}>Delete</button>
+          <li key={booking.id} className="border-b py-4">
+            <div className="flex justify-between items-center">
+              <div>
+                <h2 className='text-2xl'>Room: {booking.roomName}</h2>
+                <p>Check-in: {booking.checkInDate}</p>
+                <p>Check-out: {booking.checkOutDate}</p>
+              </div>
+              <div className="flex space-x-2">
+                <button onClick={() => handleEdit(booking)} className="text-blue-500 hover:text-blue-700">
+                  <FaEdit size={20} />
+                </button>
+                <button onClick={() => handleDelete(booking.id)} className="text-red-500 hover:text-red-700">
+                  <FaTrash size={20} />
+                </button>
+              </div>
             </div>
             {editingId === booking.id && (
-              <form onSubmit={handleUpdate}>
+              <form onSubmit={handleUpdate} className="mt-4">
                 <input
                   name="checkInDate"
                   value={formData.checkInDate}
                   onChange={handleChange}
+                  className="border rounded p-2 mr-2"
+                  placeholder="Check-in Date"
                 />
                 <input
                   name="checkOutDate"
                   value={formData.checkOutDate}
                   onChange={handleChange}
+                  className="border rounded p-2 mr-2"
+                  placeholder="Check-out Date"
                 />
-                <button type="submit">Update</button>
+                <button type="submit" className="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600">Update</button>
               </form>
             )}
           </li>

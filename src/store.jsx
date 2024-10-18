@@ -6,6 +6,7 @@ import accommodationListAdminReducer from './features/Accommodation/Accommodatio
 import bookingReducer from './features/Booking/BookingsSlice.jsx'
 import bookingsReducer from './features/Booking/BookingAdminSlice.jsx'
 import userReducer from './features/UsersSlice.jsx'
+import favoritesReducer from './features/Favorites/FavoritesSlice.jsx'
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     accommodationListAdmin: accommodationListAdminReducer, // Admin list
     booking: bookingReducer,
     bookings: bookingsReducer,
+    favorites: favoritesReducer,
   },
 })
 

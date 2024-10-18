@@ -1,9 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { db } from '../components/Firebase'; 
+import { collection, addDoc } from 'firebase/firestore';
 
+const RoomsCard = ({ list, customerId }) => {
+    
+        const [isLiked, setIsLiked] = useState(false); 
+        const navigate = useNavigate
 
-const RoomsCard = ({ list }) => {
-    const navigate = useNavigate();
+    const handleLikeClick = async () => {
+        if (!customerId) {
+          navigate('/login/customer');
+        } else {
+          const favoriteData = {
+            roomId: list.id,
+            roomDetails: list,
+            customerId,
+          };
+          
+          try {
+            await addDoc(collection(db, 'favorites'), favoriteData);
+            alert('Room added to favorites!');
+          } catch (error) {
+            console.error('Error adding to favorites: ', error);
+          }
+        }
+      };
+
+      const toggleLike = () => {
+        setIsLiked(!isLiked); // Toggle the liked state
+        handleLikeClick(); // Call the like handler
+      };
 
     const handleViewList = (listId) => {
         navigate(`/${listId}`); 
@@ -31,12 +58,18 @@ const RoomsCard = ({ list }) => {
               </div>
             </div>
             <div className="flex flex-row justify-between items-center mt-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="26px" className="cursor-pointer fill-red-500 shrink-0"
-                viewBox="0 0 64 64">
-                <path
-                  d="M45.5 4A18.53 18.53 0 0 0 32 9.86 18.5 18.5 0 0 0 0 22.5C0 40.92 29.71 59 31 59.71a2 2 0 0 0 2.06 0C34.29 59 64 40.92 64 22.5A18.52 18.52 0 0 0 45.5 4ZM32 55.64C26.83 52.34 4 36.92 4 22.5a14.5 14.5 0 0 1 26.36-8.33 2 2 0 0 0 3.27 0A14.5 14.5 0 0 1 60 22.5c0 14.41-22.83 29.83-28 33.14Z"
-                  data-original="#000000"></path>
-              </svg>
+            <svg
+      fill="currentColor"
+      viewBox="0 0 16 16"
+      height="26px"
+      width="36px"
+      className={`cursor-pointer ${isLiked ? 'fill-red-500' : 'fill-gray-500'} shrink-0`}
+      onClick={toggleLike}
+    >
+      <path
+        fillRule="evenodd"
+        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+      /></svg>
 
               <button className='mt-4 bg-[#003060] text-white rounded-md px-4 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 transition duration-200'
               onClick={() => handleViewList(list.id)}>

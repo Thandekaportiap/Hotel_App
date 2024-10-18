@@ -13,7 +13,7 @@ import LandingPage from './UserPages/LandingPage'
 import AdminProfile from './AdminPages/AdminProfile'
 import ManageAccommodations from './AdminPages/ManageAccommodations'
 import AccommodationsPage from './UserPages/AccommodationsPage'
-import LikesPage from './UserPages/LikesPage'
+import FavoritesPage from './UserPages/FavoritesPage'
 import NoPage from './UserPages/NoPage'
 import Bookings from './AdminPages/Bookings'
 import BookingsHistory from './UserPages/BookingsHistory'
@@ -69,9 +69,9 @@ function App() {
         <Route path='/bookings' element={<Bookings selectUserId={id}/>}/>
         <Route path='/manageaccommodations' element={<ManageAccommodations userId={id} />} />
         <Route path='/editaccommodation/:id' element={<EditAccommodation userId={id}/>}/>
-        <Route path='/accommodations' element={<AccommodationsPage/>}/>
+        <Route path='/accommodations' element={<AccommodationsPage customerId={id}/>}/>
         <Route path='/:id' element={<ReadMore customerId={id}/>}/>
-        <Route path='/likes' element={<LikesPage/>} />
+        <Route path="/favorites" element={<FavoritesPage customerId={id} />} />
         <Route path='/bookinghistory' element={<BookingsHistory/>}/>
         <Route path='/userprofile' element={<UserProfile userId={id}/>}/>
         <Route path='/addaccommodation' element={<AddAccommodationForm userId={id}/>}/>

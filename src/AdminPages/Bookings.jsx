@@ -4,12 +4,12 @@ import BookingsList from '../components/BookingsList';
 import { selectUserId } from '../features/UsersSlice';
 
 const Bookings = () => {
-  const userId = useSelector(selectUserId); // Use useSelector to get the userId from the store
+  const userId = useSelector(selectUserId); 
 
   return (
     <div>
-      <h1>Your Bookings</h1>
-      <BookingsList userId={userId} /> {/* Pass the userId to BookingsList */}
+      <h1 className="font-serif text-4xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#003060] to-[#68bbe3] p-2 my-6" >Your Bookings</h1>
+      <BookingsList userId={userId} />
     </div>
   );
 }

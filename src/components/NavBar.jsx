@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'; 
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai"; 
+import { AiOutlineMenu, AiOutlineClose, AiOutlineUser } from "react-icons/ai"; 
 import { Link, NavLink } from 'react-router-dom';
 
 const Logo = require('../assets/Logo.png');
@@ -53,7 +53,15 @@ const Navbar = ({ id, onLogout }) => {
 
                 <div className='hidden space-x-4 md:flex'>
                     {id ? (
-                        <button onClick={onLogout} className="bg-[#68bbe3] px-4 py-2 rounded text-[black]">Logout</button>
+                        <>
+                            <Link to="/adminProfile">
+                                <button className="flex items-center space-x-2 border border-[#68bbe3] text-[#68bbe3] py-2 hover:bg-[#68bbe3] hover:text-white px-4 font-bold rounded-md">
+                                    <AiOutlineUser />
+                                    <span>Profile</span>
+                                </button>
+                            </Link>
+                            <button onClick={onLogout} className="bg-[#68bbe3] px-4 py-2 rounded text-[black]">Logout</button>
+                        </>
                     ) : (
                         <>
                             <div className='relative' ref={loginDropdownRef}>
