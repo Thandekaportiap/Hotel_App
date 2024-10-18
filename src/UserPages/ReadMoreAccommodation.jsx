@@ -3,30 +3,35 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchAccommodationList } from '../features/Accommodation/AccommodationListSlice';
 import BookingModal from '../components/BookingModal';
+import { submitBooking } from '../features/Booking/BookingsSlice';
 
 
-const ReadMoreAccommodation = () => {
+const ReadMoreAccommodation = ({ customerId }) => {
+  console.log(customerId)
+
   const { id } = useParams(); 
+  console.log(id)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { accommodationList, loading, error } = useSelector((state) => state.accommodations);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-      dispatch(fetchAccommodationList());
-  }, [dispatch]);
+    dispatch(fetchAccommodationList());
+}, [dispatch]);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+if (loading) return <div>Loading...</div>;
+if (error) return <div>Error: {error}</div>;
 
-  const room = accommodationList.find(item => item.id === id);
+const room = accommodationList.find(item => item.id === id);
 
-  if (!room) {
-      return <div>Room not found.</div>;
-  }
-  const handleBook = (bookingDetails) => {
-    console.log('Booking Details:', bookingDetails);
+if (!room) {
+    return <div>Room not found.</div>;
+}
 
+const handleBook = (bookingDetails) => {
+    dispatch(submitBooking(bookingDetails)); 
+    setIsModalOpen(false); // Close the modal
 };
 
   return (
@@ -62,6 +67,8 @@ const ReadMoreAccommodation = () => {
                 onClose={() => setIsModalOpen(false)} 
                 roomName={room.name} 
                 onBook={handleBook} 
+                room={room}
+                customerId={customerId} 
             />
     </section>
   );

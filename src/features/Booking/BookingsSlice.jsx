@@ -1,18 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { db } from '../../components/Firebase'; 
+import { db } from '../../components/Firebase';
 import { collection, addDoc } from 'firebase/firestore';
 
 export const submitBooking = createAsyncThunk(
-    'booking/submitBooking',
+    'bookings/submitBooking',
     async (bookingDetails) => {
-        const bookingRef = collection(db, 'bookings'); 
-        const docRef = await addDoc(bookingRef, bookingDetails);
-        return { id: docRef.id, ...bookingDetails }; 
+        const bookingsRef = collection(db, 'bookings');
+        const docRef = await addDoc(bookingsRef, bookingDetails);
+        return { id: docRef.id, ...bookingDetails }; // Include customerId in booking
     }
 );
 
 const bookingSlice = createSlice({
-    name: 'booking',
+    name: 'bookings',
     initialState: {
         bookings: [],
         loading: false,
@@ -27,7 +27,7 @@ const bookingSlice = createSlice({
             })
             .addCase(submitBooking.fulfilled, (state, action) => {
                 state.loading = false;
-                state.bookings.push(action.payload); 
+                state.bookings.push(action.payload);
             })
             .addCase(submitBooking.rejected, (state, action) => {
                 state.loading = false;
@@ -36,5 +36,4 @@ const bookingSlice = createSlice({
     },
 });
 
-export const { actions, reducer } = bookingSlice;
-export default reducer;
+export default bookingSlice.reducer;

@@ -21,28 +21,33 @@ import ReadMore from './UserPages/ReadMoreAccommodation'
 import UserProfile from './UserPages/UserProfile'
 import AddAccommodationForm from './AdminPages/AddAccommodationForm'
 import EditAccommodation from './AdminPages/EditAccommodation'
-
+import { useDispatch } from 'react-redux'
+import { setUserId, clearUserId } from './features/UsersSlice'; 
 
 
 function App() {
 
   const [id, setId] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const savedUserId = localStorage.getItem('loggedInUserId');
     if (savedUserId) {
       setId(savedUserId);
+      dispatch(setUserId(savedUserId));
     }
-  }, []);
+  }, [dispatch]);
 
   const handleLogin = (userId) => {
     setId(userId);
-    localStorage.setItem('loggedInUserId', userId); 
+    localStorage.setItem('loggedInUserId', userId);
+    dispatch(setUserId(userId)); 
   };
 
   const handleLogout = () => {
     setId(null);
     localStorage.removeItem('loggedInUserId'); 
+    dispatch(clearUserId()); 
   };
  
 
@@ -61,11 +66,11 @@ function App() {
         <Route path='/contactus' element={<ContactUsPage/> }/>
         <Route path='/about' element={<AboutUs/> }/>
         <Route path='/adminProfile' element={<AdminProfile userId={id}/>}/>
-        <Route path='/bookings' element={<Bookings/>}/>
+        <Route path='/bookings' element={<Bookings selectUserId={id}/>}/>
         <Route path='/manageaccommodations' element={<ManageAccommodations userId={id} />} />
         <Route path='/editaccommodation/:id' element={<EditAccommodation userId={id}/>}/>
         <Route path='/accommodations' element={<AccommodationsPage/>}/>
-        <Route path='/:id' element={<ReadMore/>}/>
+        <Route path='/:id' element={<ReadMore customerId={id}/>}/>
         <Route path='/likes' element={<LikesPage/>} />
         <Route path='/bookinghistory' element={<BookingsHistory/>}/>
         <Route path='/userprofile' element={<UserProfile userId={id}/>}/>

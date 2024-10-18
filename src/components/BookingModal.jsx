@@ -1,20 +1,33 @@
 import React, { useState } from 'react';
 
-const BookingModal = ({ isOpen, onClose, roomName, onBook }) => {
+const BookingModal = ({ isOpen, onClose, roomName, room, customerId, onBook }) => {
     const [customerName, setCustomerName] = useState('');
     const [contactInfo, setContactInfo] = useState('');
     const [checkInDate, setCheckInDate] = useState('');
     const [checkOutDate, setCheckOutDate] = useState('');
+    const [numberOfGuests, setNumberOfGuests] = useState(1); // Added state for number of guests
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
+        // Validate check-in and check-out dates
+        if (new Date(checkInDate) >= new Date(checkOutDate)) {
+            alert('Check-out date must be after check-in date');
+            return;
+        }
+
         const bookingDetails = {
+            roomId: room.id,
+            userId: room.userId,
             customerName,
             contactInfo,
+            numberOfGuests,
             checkInDate,
             checkOutDate,
             roomName,
+            customerId,
         };
+        
         onBook(bookingDetails);
         onClose(); // Close the modal after booking
     };
@@ -42,6 +55,17 @@ const BookingModal = ({ isOpen, onClose, roomName, onBook }) => {
                             type="text"
                             value={contactInfo}
                             onChange={(e) => setContactInfo(e.target.value)}
+                            required
+                            className="border rounded p-2 w-full"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block mb-2">Number of Guests:</label>
+                        <input
+                            type="number"
+                            min="1"
+                            value={numberOfGuests}
+                            onChange={(e) => setNumberOfGuests(e.target.value)}
                             required
                             className="border rounded p-2 w-full"
                         />

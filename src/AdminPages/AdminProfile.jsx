@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 function AdminProfile({ userId }) {
+    console.log(userId)
     const [userDetails, setUserDetails] = useState(null);
     const navigate = useNavigate();
 
