@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchFavorites } from '../features/Favorites/FavoritesSlice'; // Import your slice to fetch favorites
+import { fetchFavorites, removeFavorite } from '../features/Favorites/FavoritesSlice'; // Import the removeFavorite action
 import RoomsCard from '../components/RoomsCard';
 
 const FavoritesPage = ({ customerId }) => {
-    console.log(customerId)
     const dispatch = useDispatch();
     const { favorites, loading, error } = useSelector((state) => state.favorites);
 
@@ -14,6 +13,10 @@ const FavoritesPage = ({ customerId }) => {
         }
     }, [customerId, dispatch]);
 
+    const handleRemoveFavorite = (id) => {
+        dispatch(removeFavorite(id));
+    };
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -21,13 +24,21 @@ const FavoritesPage = ({ customerId }) => {
     if (error) {
         return <div>Error: {error}</div>;
     }
-    console.log(favorites)
+
     return (
         <section>
             <h1 className='text-4xl font-bold p-3'>Your Favorites</h1>
             <div className='w-full'>
-                {favorites.map((favorite, index) => (
-                    <RoomsCard key={index} list={favorite} />
+                {favorites.map((favorite) => (
+                    <div key={favorite.id} className="flex justify-between items-center">
+                        <RoomsCard list={favorite.roomDetails} />
+                        <button
+                            onClick={() => handleRemoveFavorite(favorite.id)}
+                            className="bg-red-500 text-white px-4 py-2 rounded"
+                        >
+                            Remove
+                        </button>
+                    </div>
                 ))}
             </div>
         </section>

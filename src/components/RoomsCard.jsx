@@ -4,6 +4,7 @@ import { db } from '../components/Firebase';
 import { collection, addDoc } from 'firebase/firestore';
 
 const RoomsCard = ({ list, customerId }) => {
+    console.log(list)
     
         const [isLiked, setIsLiked] = useState(false); 
         const navigate = useNavigate
