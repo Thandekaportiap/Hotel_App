@@ -7,7 +7,7 @@ export const submitBooking = createAsyncThunk(
     async (bookingDetails) => {
         const bookingsRef = collection(db, 'bookings');
         const docRef = await addDoc(bookingsRef, bookingDetails);
-        return { id: docRef.id, ...bookingDetails }; // Include customerId in booking
+        return { id: docRef.id, ...bookingDetails }; // Include price and other details in the booking
     }
 );
 

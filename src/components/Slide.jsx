@@ -5,24 +5,24 @@ import 'swiper/swiper-bundle.css';
 
 const ImageCarousel = ({ images }) => {
     return (
-        <div className="w-full relative">
+        <div className="relative w-full">
             <Swiper
                 modules={[Autoplay, Pagination]}
                 className="progress-slide-carousel"
                 loop={true}
                 autoplay={{
-                    delay: 1200,
+                    delay: 10000,
                     disableOnInteraction: false,
                 }}
                 pagination={{
                     clickable: true,
                 }}
-                style={{ height: 'max-content', paddingBottom: '64px' }}
+                style={{ height: 'max-content', }}
             >
                 {images.map((image, index) => (
                     <SwiperSlide key={index}>
-                        <div className="bg-indigo-50 rounded-2xl h-96 flex justify-center items-center relative">
-                            <img src={image.src} alt={`Slide ${index + 1}`} className="object-cover h-full w-full rounded-2xl" />
+                        <div className="relative flex items-center justify-center bg-indigo-50 rounded-2xl h-96">
+                            <img src={image.src} alt={`Slide ${index + 1}`} className="object-cover w-full h-full rounded-2xl" />
                             <span className="absolute text-3xl font-semibold text-[#003060]">{image.label}</span>
                         </div>
                     </SwiperSlide>

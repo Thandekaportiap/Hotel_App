@@ -34,9 +34,10 @@ const Navbar = ({ id, onLogout, role }) => {
     return (
         <>
             <nav className='z-50 border bg-[#003060] font-serif flex justify-between items-center h-20 mx-auto px-5 text-[#A3E3FA]'>
-                <img src={Logo} alt="Logo" className='h-12 w-16' />
+                {/* <img src={Logo} alt="Logo" className='w-16 h-12' /> */}
+                <h1 className="font-sans text-4xl">AWBookings.io</h1>
 
-                <ul className='hidden md:flex space-x-6 text-2xl font-semibold'>
+                <ul className='hidden space-x-6 text-2xl font-semibold md:flex'>
                     <li>
                         <NavLink to="/" className={({ isActive }) => (isActive ? 'text-[#68bbe3] active:bg-[#003060]' : 'hover:text-[#68bbe3]')}>Home</NavLink>
                     </li>
@@ -69,7 +70,7 @@ const Navbar = ({ id, onLogout, role }) => {
                                     Login
                                 </button>
                                 {loginDropdownOpen && (
-                                    <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md z-10">
+                                    <div className="absolute right-0 z-10 w-48 mt-2 bg-white rounded-md shadow-lg">
                                         <Link to="/login/customer">
                                             <button className='w-full text-left px-4 py-2 hover:bg-[#68bbe3] hover:text-white' onClick={() => setLoginDropdownOpen(false)}>LogIn as Customer</button>
                                         </Link>
@@ -84,7 +85,7 @@ const Navbar = ({ id, onLogout, role }) => {
                                     Register
                                 </button>
                                 {registerDropdownOpen && (
-                                    <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md z-10">
+                                    <div className="absolute right-0 z-10 w-48 mt-2 bg-white rounded-md shadow-lg">
                                         <Link to="/register/customer">
                                             <button className='w-full text-left px-4 py-2 hover:bg-[#68bbe3] hover:text-white' onClick={() => setRegisterDropdownOpen(false)}>Register as Customer</button>
                                         </Link>
@@ -119,16 +120,44 @@ const Navbar = ({ id, onLogout, role }) => {
                         </li>
                     </ul>
                     {id ? (
-                        <button onClick={onLogout} className="bg-red-500 px-4 py-2 rounded">Logout</button>
+                        <button onClick={onLogout} className="px-4 py-2 bg-red-500 rounded">Logout</button>
                     ) : (
                         <div className='block pt-5 space-y-4'>
-                            <Link to='/login'>
-                                <button className='border border-[#68bbe3] hover:bg-[#68bbe3] hover:text-white bg-[#003060] w-full py-2 text-[white] font-bold rounded-md block'>Login</button>
-                            </Link>
-                            <Link to="/register">
-                                <button className='border border-[#68bbe3] hover:bg-[#68bbe3] hover:text-white bg-[#003060] w-full py-2 text-[white] font-bold rounded-md'>Register</button>
-                            </Link>
+                        {/* Login Dropdown */}
+                        <div className='relative' ref={loginDropdownRef}>
+                            <button className='border border-[#68bbe3] hover:bg-[#68bbe3] hover:text-white bg-[#003060] w-full py-2 text-[white] font-bold rounded-md block' onClick={() => setLoginDropdownOpen(!loginDropdownOpen)}>
+                                Login
+                            </button>
+                            {loginDropdownOpen && (
+                                <div className="absolute right-0 z-10 w-full mt-2 bg-white rounded-md shadow-lg">
+                                    <Link to="/login/customer">
+                                        <button className='w-full text-left px-4 py-2 hover:bg-[#68bbe3] hover:text-white' onClick={() => setLoginDropdownOpen(false)}>LogIn as Customer</button>
+                                    </Link>
+                                    <Link to="/login/admin">
+                                        <button className='w-full text-left px-4 py-2 hover:bg-[#68bbe3] hover:text-white' onClick={() => setLoginDropdownOpen(false)}>LogIn as Admin</button>
+                                    </Link>
+                                </div>
+                            )}
                         </div>
+                    
+                        {/* Register Dropdown */}
+                        <div className='relative' ref={registerDropdownRef}>
+                            <button className='border border-[#68bbe3] hover:bg-[#68bbe3] hover:text-white bg-[#003060] w-full py-2 text-[white] font-bold rounded-md block' onClick={() => setRegisterDropdownOpen(!registerDropdownOpen)}>
+                                Register
+                            </button>
+                            {registerDropdownOpen && (
+                                <div className="absolute right-0 z-10 w-full mt-2 bg-white rounded-md shadow-lg">
+                                    <Link to="/register/customer">
+                                        <button className='w-full text-left px-4 py-2 hover:bg-[#68bbe3] hover:text-white' onClick={() => setRegisterDropdownOpen(false)}>Register as Customer</button>
+                                    </Link>
+                                    <Link to="/register/admin">
+                                        <button className='w-full text-left px-4 py-2 hover:bg-[#68bbe3] hover:text-white' onClick={() => setRegisterDropdownOpen(false)}>Register as Admin</button>
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                    
                     )}
                 </div>
             </nav>
