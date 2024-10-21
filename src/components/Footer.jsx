@@ -4,12 +4,11 @@ const Footer = () => {
     return (
         <footer className="flex flex-col space-y-10 justify-center  bg-[#003060] w-full">
             <nav className="flex justify-center flex-wrap gap-6 text-[#68bbe3] font-medium text-2xl">
-                <a className="hover:text-gray-900" href="#">Home</a>
-                <a className="hover:text-gray-900" href="#">About</a>
-                <a className="hover:text-gray-900" href="#">Services</a>
-                <a className="hover:text-gray-900" href="#">Media</a>
-                <a className="hover:text-gray-900" href="#">Gallery</a>
-                <a className="hover:text-gray-900" href="#">Contact</a>
+                <a className="hover:text-white" href="#">Home</a>
+                <a className="hover:text-white" href="#">About</a>
+                <a className="hover:text-white" href="#">Services</a>
+                <a className="hover:text-white" href="#">Gallery</a>
+                <a className="hover:text-white" href="#">Contact</a>
             </nav>
 
             <div className="flex justify-center space-x-5">

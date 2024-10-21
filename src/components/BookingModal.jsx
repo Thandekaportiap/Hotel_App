@@ -34,12 +34,10 @@ const BookingModal = ({ isOpen, onClose, roomName, room, customerId, onBook }) =
             price: room.price,
         };
 
-        // Store booking details in state for use after payment
         setBookingDetails(bookingData);
     };
 
     const handlePaymentSuccess = async (paymentDetails) => {
-        // Once payment is successful, finalize the booking
         const finalBookingDetails = {
             ...bookingDetails,
             paymentDetails,
@@ -47,8 +45,6 @@ const BookingModal = ({ isOpen, onClose, roomName, room, customerId, onBook }) =
 
         // Send booking details to Firebase
         onBook(finalBookingDetails);
-
-        // Close modal after booking and payment
         onClose();
     };
 
@@ -121,7 +117,8 @@ const BookingModal = ({ isOpen, onClose, roomName, room, customerId, onBook }) =
                     </form>
                 ) : (
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm amount={room.price * 100} onPaymentSuccess={handlePaymentSuccess} />
+                        <CheckoutForm amount={room.price * 100} onPaymentSuccess={handlePaymentSuccess} 
+                        className w-full p-2 border rounded/>
                     </Elements>
                 )}
             </div>

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({ amount, onPaymentSuccess }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -47,12 +49,29 @@ const CheckoutForm = ({ amount, onPaymentSuccess }) => {
         } else if (paymentIntent.status === 'succeeded') {
             // Payment succeeded, pass the payment details
             onPaymentSuccess(paymentIntent);
+            navigate('/reviewpage');
         }
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <CardElement />
+            <CardElement 
+                options={{
+                    style: {
+                        base: {
+                            fontSize: '16px', // Adjust font size if needed
+                            color: '#000', // Text color
+                            padding: '10px', // Add padding for better spacing
+                            width: '100%', // Set width to 100% of parent container
+                        },
+                        invalid: {
+                            color: '#fa755a',
+                            iconColor: '#fa755a',
+                        },
+                    },
+                }} 
+                className='bg-white rounded-md' 
+            />
             {error && <div className="error">{error}</div>}
             <button type="submit" disabled={!stripe || loading} className="btn">
                 {loading ? 'Processing...' : `Pay ₹${amount / 100}`}
