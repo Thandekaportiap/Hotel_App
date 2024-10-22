@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAccommodationList } from '../features/Accommodation/AccommodationListSlice';
 
 function AccommodationsPage({customerId}) {
-    console.log(customerId)
+    // console.log(customerId)
 
     const navigate = useNavigate();
     const dispatch = useDispatch();

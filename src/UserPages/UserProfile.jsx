@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 const UserProfile = ({ userId }) => {
-  console.log(userId)
+  // console.log(userId)
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [userDetails, setUserDetails] = useState(null);
   const [loading, setLoading] = useState(true);

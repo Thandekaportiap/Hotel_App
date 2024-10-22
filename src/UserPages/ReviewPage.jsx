@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { db } from '../components/Firebase'; // Make sure to configure Firebase
+import { db } from '../components/Firebase'; 
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 
 const ReviewPage = () => {
@@ -8,7 +8,7 @@ const ReviewPage = () => {
     const [rating, setRating] = useState(1);
     const [comment, setComment] = useState('');
 
-    // Fetch reviews from Firestore
+
     useEffect(() => {
         const fetchReviews = async () => {
             const reviewsCollection = collection(db, 'reviews'); // 'reviews' is the name of the Firestore collection
@@ -20,7 +20,6 @@ const ReviewPage = () => {
         fetchReviews();
     }, []);
 
-    // Submit a new review
     const handleSubmit = async (e) => {
         e.preventDefault();
 
