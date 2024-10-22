@@ -7,7 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { getDocs, query, where, collection } from 'firebase/firestore'; // Assuming you're using Firebase Firestore
 import { db } from '../components/Firebase'; // Import Firebase
 
-const stripePromise = loadStripe('your-public-key-here');
+const stripePromise = loadStripe('pk_test_51QBwYZA9hsbb7bPk3qURxjQEH9qKpNV9wWbVrvqwBdAE9bwscO3RjzcRcrw6RcfGwoClNsqvBCkz2dwxabzRvGCN00TAomN0jY');
 
 const BookingModal = ({ isOpen, onClose, roomName, room, customerId, onBook }) => {
     const [customerName, setCustomerName] = useState('');
@@ -55,7 +55,6 @@ const BookingModal = ({ isOpen, onClose, roomName, room, customerId, onBook }) =
             date.toDateString() === unavailableDate.toDateString());
     };
 
-    // Calculate the total price based on stay duration
     useEffect(() => {
         if (checkInDate && checkOutDate) {
             const days = Math.ceil((new Date(checkOutDate) - new Date(checkInDate)) / (1000 * 60 * 60 * 24));

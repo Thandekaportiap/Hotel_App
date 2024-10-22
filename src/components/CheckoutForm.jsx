@@ -49,7 +49,7 @@ const CheckoutForm = ({ amount, onPaymentSuccess }) => {
         } else if (paymentIntent.status === 'succeeded') {
             // Payment succeeded, pass the payment details
             onPaymentSuccess(paymentIntent);
-            navigate('/reviewpage');
+            navigate('/bookinghistory');
         }
     };
 

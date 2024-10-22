@@ -54,7 +54,7 @@ const UserProfile = ({ userId }) => {
                 {userDetails?.firstName}'s Profile
             </h3>
             <p className="mt-1 max-w-2xl text-2xl text-gray-600">
-                This is some information about the {userDetails.firstName}
+                This is some information about  {userDetails.firstName}
             </p>
         </div>
         <div className="border-t border-gray-200 px-6 py-5">
