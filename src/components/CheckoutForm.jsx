@@ -70,11 +70,11 @@ const CheckoutForm = ({ amount, onPaymentSuccess }) => {
                         },
                     },
                 }} 
-                className='bg-white rounded-md' 
+                className='bg-white rounded-md h-40' 
             />
             {error && <div className="error">{error}</div>}
             <button type="submit" disabled={!stripe || loading} className="btn">
-                {loading ? 'Processing...' : `Pay ₹${amount / 100}`}
+                {loading ? 'Processing...' : `Pay R${amount / 100}`}
             </button>
         </form>
     );
