@@ -13,22 +13,22 @@ const ContactUsPage = () => {
           <ContactInfo
             icon={OfficeIcon}
             title="Visit office"
-            description="123 Main Street, City, Country"
+            description="123 Main Street, Durban, South Africa"
           />
           <ContactInfo
             icon={PhoneIcon}
             title="Call us"
-            description="+158 996 888"
+            description="031 456 7899"
           />
           <ContactInfo
             icon={ChatIcon}
             title="Chat to us"
-            description="info@example.com"
+            description="info@AWBooking.com"
           />
           <ContactInfo
             icon={FaxIcon}
             title="Fax"
-            description="+1-548-2588"
+            description="+27-548-2588"
           />
         </div>
 
