@@ -1,4 +1,5 @@
 import React from 'react'
+Import { Link } from 'react-router-dom'
 
 const AccomCard = ({ list }) => {
   return (
@@ -23,8 +24,8 @@ const AccomCard = ({ list }) => {
 
         <div className="mt-8 flex items-center flex-wrap gap-4">
           <h3 className="text-xl text-gray-800 font-bold flex-1">From R450 per night</h3>
-          <button type="button"
-            className="px-5 py-2.5 rounded-lg text-white text-sm tracking-wider bg-[#003060] hover:bg-blue-700 outline-none">View</button>
+         <Link to='/accommodations' className="text-gray-800 text-sm font-bold"> <button type="button"
+            className="px-5 py-2.5 rounded-lg text-white text-sm tracking-wider bg-[#003060] hover:bg-blue-700 outline-none">View</button></Link>
         </div>
       </div>
     </div>
