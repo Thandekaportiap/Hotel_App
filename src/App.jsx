@@ -23,6 +23,8 @@ import AddAccommodationForm from './AdminPages/AddAccommodationForm';
 import EditAccommodation from './AdminPages/EditAccommodation';
 import { useDispatch } from 'react-redux';
 import { setUserId, clearUserId } from './features/UsersSlice';
+import ReviewPage from './UserPages/ReviewPage';
+import SidebarLayout from './components/SideBarLayout';
 
 const App = () => {
   const [id, setId] = useState(null);
@@ -78,9 +80,10 @@ const App = () => {
         <Route path="/accommodations" element={<AccommodationsPage customerId={id} />} />
         <Route path="/:id" element={<ReadMore customerId={id} />} />
         <Route path="/favorites" element={<FavoritesPage customerId={id} />} />
-        <Route path="/bookinghistory" element={<BookingsHistory />} />
-        <Route path="/userprofile" element={<UserProfile userId={id} />} />
+        <Route path="/bookinghistory" element={<BookingsHistory  />} />
+        <Route path="/userprofile" element={<SidebarLayout userId={id} />} />
         <Route path="/addaccommodation" element={<AddAccommodationForm userId={id} />} />
+        <Route path='/reviewpage' element={<ReviewPage />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
 

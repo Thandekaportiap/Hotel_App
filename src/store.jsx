@@ -7,6 +7,7 @@ import bookingReducer from './features/Booking/BookingsSlice.jsx'
 import bookingsReducer from './features/Booking/BookingAdminSlice.jsx'
 import userReducer from './features/UsersSlice.jsx'
 import favoritesReducer from './features/Favorites/FavoritesSlice.jsx'
+import bookingHistoryReducer from './features/Booking/BookingHistory.jsx'
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     booking: bookingReducer,
     bookings: bookingsReducer,
     favorites: favoritesReducer,
+    bookingHistory: bookingHistoryReducer,
   },
 })
 

@@ -31,13 +31,8 @@ const FavoritesPage = ({ customerId }) => {
             <div className='w-full'>
                 {favorites.map((favorite) => (
                     <div key={favorite.id} className="flex justify-between items-center">
-                        <FavoritesCard list={favorite.roomDetails} />
-                        <button
-                            onClick={() => handleRemoveFavorite(favorite.id)}
-                            className="bg-red-500 text-white px-4 py-2 rounded"
-                        >
-                            Remove
-                        </button>
+                        <FavoritesCard list={favorite.roomDetails} handleRemoveFavorite={handleRemoveFavorite} customerId={customerId} />
+                      
                     </div>
                 ))}
             </div>

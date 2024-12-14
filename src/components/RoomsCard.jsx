@@ -4,13 +4,13 @@ import { db } from '../components/Firebase';
 import { collection, addDoc } from 'firebase/firestore';
 
 const RoomsCard = ({ list, customerId }) => {
-    const [isLiked, setIsLiked] = useState(false); 
-    const navigate = useNavigate(); // Call useNavigate as a function
+    const [isLiked, setIsLiked] = useState(false);
+    const navigate = useNavigate();
 
     const handleLikeClick = async () => {
         if (!customerId) {
             navigate('/login/customer');
-            return; // Early return to avoid further processing
+            return;
         }
 
         const favoriteData = {
@@ -21,7 +21,7 @@ const RoomsCard = ({ list, customerId }) => {
         
         try {
             await addDoc(collection(db, 'favorites'), favoriteData);
-            setIsLiked(true); // Set liked state to true
+            setIsLiked(true);
             alert('Room added to favorites!');
         } catch (error) {
             console.error('Error adding to favorites: ', error);
@@ -30,15 +30,36 @@ const RoomsCard = ({ list, customerId }) => {
 
     const toggleLike = () => {
         if (isLiked) {
-            // Optionally, you can handle removing the favorite here
-            alert('Already liked!'); // Or handle unliking if necessary
+            alert('Already liked!');
         } else {
             handleLikeClick();
         }
     };
 
     const handleViewList = (listId) => {
-        navigate(`/${listId}`); 
+        navigate(`/${listId}`);
+    };
+
+    const handleShareClick = () => {
+        const roomUrl = window.location.origin + `/room/${list.id}`;
+        
+        // Check if Web Share API is supported
+        if (navigator.share) {
+            navigator.share({
+                title: list.name,
+                text: `Check out this room: ${list.name}`,
+                url: roomUrl,
+            }).then(() => {
+                console.log('Room shared successfully');
+            }).catch((error) => {
+                console.error('Error sharing room: ', error);
+            });
+        } else {
+            // Fallback: Copy the link to clipboard
+            navigator.clipboard.writeText(roomUrl)
+                .then(() => alert('Room link copied to clipboard!'))
+                .catch((error) => console.error('Error copying link: ', error));
+        }
     };
 
     return (
@@ -62,28 +83,37 @@ const RoomsCard = ({ list, customerId }) => {
                                 <span className="block text-2xl text-gray-500">Occupancy: {list.capacity}</span>
                             </div>
                         </div>
-                        <div className="flex flex-row justify-between items-center mt-4">
-                            <svg
-                                fill="currentColor"
-                                viewBox="0 0 16 16"
-                                height="26px"
-                                width="36px"
-                                className={`cursor-pointer ${isLiked ? 'fill-red-500' : 'fill-gray-500'} shrink-0`}
-                                onClick={toggleLike}
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                                />
-                            </svg>
+                        <div className="flex flex-row justify-between items-center mt-4 space-x-4">
+    <svg
+        fill="currentColor"
+        viewBox="0 0 16 16"
+        height="26px"
+        width="36px"
+        className={`cursor-pointer ${isLiked ? 'fill-red-500' : 'fill-gray-500'} shrink-0`}
+        onClick={toggleLike}
+    >
+        <path
+            fillRule="evenodd"
+            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+        />
+    </svg>
 
-                            <button 
-                                className='mt-4 bg-[#003060] text-white rounded-md px-4 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 transition duration-200'
-                                onClick={() => handleViewList(list.id)}
-                            >
-                                Read More
-                            </button>
-                        </div>
+    <button 
+        className='bg-[#003060] text-white rounded-md px-4 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 transition duration-200'
+        onClick={() => handleViewList(list.id)}
+    >
+        Read More
+    </button>
+
+    <button 
+        className='bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 transition duration-200'
+        onClick={handleShareClick}
+    >
+        Share Room
+    </button>
+</div>
+
+
                     </div>
                 </div>
             </div>

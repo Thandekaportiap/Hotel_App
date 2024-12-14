@@ -7,10 +7,10 @@ import { submitBooking } from '../features/Booking/BookingsSlice';
 
 
 const ReadMoreAccommodation = ({ customerId }) => {
-  console.log(customerId)
+  // console.log(customerId)
 
   const { id } = useParams(); 
-  console.log(id)
+  // console.log(id)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { accommodationList, loading, error } = useSelector((state) => state.accommodations);

@@ -1,6 +1,7 @@
 // features/Booking/BookingsSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { db } from '../../components/Firebase'
+import { doc, updateDoc, deleteDoc } from 'firebase/firestore';
 
 import { collection, query, where, getDocs } from 'firebase/firestore';
 
@@ -21,7 +22,8 @@ export const fetchBookings = createAsyncThunk(
 export const updateBooking = createAsyncThunk(
   'bookings/updateBooking',
   async ({ id, data }) => {
-    await db.collection('bookings').doc(id).update(data);
+    const bookingRef = doc(db, 'bookings', id);
+    await updateDoc(bookingRef, data); 
     return { id, data };
   }
 );
@@ -29,7 +31,8 @@ export const updateBooking = createAsyncThunk(
 export const deleteBooking = createAsyncThunk(
   'bookings/deleteBooking',
   async (id) => {
-    await db.collection('bookings').doc(id).delete();
+    const bookingRef = doc(db, 'bookings', id);
+    await deleteDoc(bookingRef); // Use deleteDoc
     return id;
   }
 );
