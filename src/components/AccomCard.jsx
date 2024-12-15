@@ -1,5 +1,5 @@
 import React from 'react'
-Import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const AccomCard = ({ list }) => {
   return (
